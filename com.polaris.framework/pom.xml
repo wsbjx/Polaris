@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.polaris.framework</groupId>
+	<artifactId>com.polaris.framework</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<modules>
+		<module>com.polaris.framework.common</module>
+		<module>com.polaris.framework.toolkit</module>
+		<module>com.polaris.framework.view.extjs</module>
+		<module>com.polaris.framework.view.jquery</module>
+		<module>com.polaris.framework.view.sencha</module>
+	</modules>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<repositories>
+		<repository>
+			<id>maven-net-cn</id>
+			<name>Maven China Mirror</name>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>maven-net-cn</id>
+			<name>Maven China Mirror</name>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+</project>
