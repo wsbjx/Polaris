@@ -6,6 +6,7 @@
 	<artifactId>com.polaris.framework</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
+	<!-- test -->
 	<modules>
 		<module>com.polaris.framework.common</module>
 		<module>com.polaris.framework.toolkit</module>
