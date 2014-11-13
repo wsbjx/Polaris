@@ -18,7 +18,7 @@ public class ResourceLoader
 {
 	Log log = LogFactory.getLog(getClass());
 
-	private static final String RESOURCE_PATH = "META-INF/view%s";
+	private static final String RESOURCE_PATH = "META-INF/view/%s";
 
 	/**
 	 * 根据路径名称获取资源输入流
