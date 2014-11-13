@@ -10,9 +10,7 @@
 	<modules>
 		<module>com.polaris.framework.common</module>
 		<module>com.polaris.framework.toolkit</module>
-		<module>com.polaris.framework.view.extjs</module>
-		<module>com.polaris.framework.view.jquery</module>
-		<module>com.polaris.framework.view.sencha</module>
+		<module>com.polaris.framework.view</module>
 	</modules>
 	<build>
 		<plugins>
