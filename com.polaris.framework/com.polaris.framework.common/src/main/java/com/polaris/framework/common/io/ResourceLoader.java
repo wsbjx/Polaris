@@ -1,4 +1,4 @@
-package com.polaris.framework.view.io;
+package com.polaris.framework.common.io;
 
 import java.io.InputStream;
 

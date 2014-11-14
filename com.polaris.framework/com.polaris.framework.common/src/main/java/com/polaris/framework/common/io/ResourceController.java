@@ -1,4 +1,4 @@
-package com.polaris.framework.view.io;
+package com.polaris.framework.common.io;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +13,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,9 +39,12 @@ public class ResourceController
 	 * @param uri
 	 * @param response
 	 */
-	@RequestMapping(value = "/{uri}", method = RequestMethod.GET)
-	public void load(@PathVariable String uri, HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value = "**/*", method = RequestMethod.GET)
+	public void load(HttpServletRequest request, HttpServletResponse response)
 	{
+		String prefixPath = request.getContextPath() + "/api/resource/";
+		String requestURI = request.getRequestURI();
+		String uri = requestURI.substring(prefixPath.length());
 		log.info("load resource, uri: " + uri);
 		String contentType = getContentType(request.getServletContext(), uri);
 		response.setContentType(contentType);
