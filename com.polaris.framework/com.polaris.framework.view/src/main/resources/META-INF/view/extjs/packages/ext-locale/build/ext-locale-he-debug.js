@@ -1,11 +1,3 @@
-Ext.define('Ext.locale.container.Viewport', {
-    override: 'Ext.container.Viewport',
-    requires: [
-        'Ext.rtl.*'
-    ],
-
-    rtl: true
-});
 /**
  * Hebrew Translations
  * By spartacus (from forums) 06-12-2007
@@ -277,3 +269,13 @@ Ext.define("Ext.locale.he.window.MessageBox", {
 Ext.define("Ext.locale.he.Component", {	
     override: "Ext.Component"
 });
+
+Ext.define('Ext.locale.container.Viewport', {
+    override: 'Ext.container.Viewport',
+    requires: [
+        'Ext.rtl.*'
+    ],
+
+    rtl: true
+});
+

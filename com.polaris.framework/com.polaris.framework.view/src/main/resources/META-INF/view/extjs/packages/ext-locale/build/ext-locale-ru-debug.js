@@ -283,3 +283,4 @@ Ext.define("Ext.locale.ru.form.field.File", {
 Ext.define("Ext.locale.ru.Component", {	
     override: "Ext.Component"
 });
+

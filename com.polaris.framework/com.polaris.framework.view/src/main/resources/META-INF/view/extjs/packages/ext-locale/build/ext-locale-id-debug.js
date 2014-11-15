@@ -290,3 +290,4 @@ Ext.define("Ext.locale.id.window.MessageBox", {
 Ext.define("Ext.locale.id.Component", {	
     override: "Ext.Component"
 });
+

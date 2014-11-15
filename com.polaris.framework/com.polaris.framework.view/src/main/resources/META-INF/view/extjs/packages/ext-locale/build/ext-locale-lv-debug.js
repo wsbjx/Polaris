@@ -307,3 +307,4 @@ Ext.define("Ext.locale.lv.window.MessageBox", {
 Ext.define("Ext.locale.lv.Component", {
     override: "Ext.Component"
 });
+
