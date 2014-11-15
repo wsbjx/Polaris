@@ -54,7 +54,7 @@ public class ResourceController
 			is = resourceLoader.getInputStream(uri);
 			IOUtils.copy(is, response.getOutputStream());
 		}
-		catch (IOException e)
+		catch (Exception e)
 		{
 			log.warn("load resource failed! uri: " + uri, e);
 		}
