@@ -45,7 +45,7 @@ public class ResourceController
 		String prefixPath = request.getContextPath() + "/api/resource/";
 		String requestURI = request.getRequestURI();
 		String uri = requestURI.substring(prefixPath.length());
-		log.info("load resource, uri: " + uri);
+		log.debug("load resource, uri: " + uri);
 		String contentType = getContentType(request.getServletContext(), uri);
 		response.setContentType(contentType);
 		InputStream is = null;
