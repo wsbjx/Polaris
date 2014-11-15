@@ -1,71 +1,36 @@
-Ext.require([ 'Ext.tab.*', 'Ext.window.*', 'Ext.tip.*', 'Ext.layout.container.Border' ]);
-Ext
-		.onReady(function() {
-			var win, button = Ext.get('show-btn');
+Ext.require([ '*' ]);
 
-			button
-					.on(
-							'click',
-							function() {
-
-								if (!win) {
-									win = Ext
-											.create(
-													'widget.window',
-													{
-														title : 'Layout Window with title <em>after</em> tools',
-														header : {
-															titlePosition : 2,
-															titleAlign : 'center'
-														},
-														closable : true,
-														closeAction : 'hide',
-														maximizable : true,
-														animateTarget : button,
-														width : 800,
-														minWidth : 350,
-														height : 600,
-														layout : {
-															type : 'border',
-															padding : 5
-														},
-														items : [
-																{
-																	region : 'west',
-																	title : '导航',
-																	width : 200,
-																	split : true,
-																	collapsible : true,
-																	floatable : false
-																},
-																{
-																	region : 'center',
-																	xtype : 'tabpanel',
-																	items : [
-																			{
-																				rtl : false,
-																				title : 'Bogus Tab',
-																				html : '<p>Window configured with:</p><pre style="margin-left:20px"><code>header: {\n    titlePosition: 2,\n    titleAlign: "center"\n},\nmaximizable: true,\ntools: [{type: "pin"}],\nclosable: true</code></pre>'
-																			}, {
-																				title : 'Another Tab',
-																				html : 'Hello world 2'
-																			}, {
-																				title : 'Closable Tab',
-																				html : 'Hello world 3',
-																				closable : true
-																			} ]
-																} ]
-													});
-								}
-								button.dom.disabled = true;
-								if (win.isVisible()) {
-									win.hide(this, function() {
-										button.dom.disabled = false;
-									});
-								} else {
-									win.show(this, function() {
-										button.dom.disabled = false;
-									});
-								}
-							});
-		});
+Ext.onReady(function() {
+	Ext.create('Ext.container.Viewport', {
+		layout : 'border',
+		items : [ {
+			region : 'north',
+			html : '<h1 class="x-panel-header">系统标题</h1>',
+			border : false,
+			margin : '0',
+			split : true
+		}, {
+			region : 'west',
+			collapsible : true,
+			title : '导航树',
+			width : 150,
+			split : true
+		}, {
+			region : 'center',
+			xtype : 'tabpanel',
+			items : [ {
+				rtl : false,
+				title : '首页',
+				html : '<p>wanglei is a dog!</p>'
+			}, {
+				title : '模块管理',
+				html : 'Hello world 2',
+				closable : true
+			}, {
+				title : '用户管理',
+				html : 'Hello world 3',
+				closable : true
+			} ]
+		} ]
+	});
+});
