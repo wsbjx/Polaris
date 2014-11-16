@@ -42,7 +42,7 @@ public class ResourceController
 	@RequestMapping(value = "**/*", method = RequestMethod.GET)
 	public void load(HttpServletRequest request, HttpServletResponse response)
 	{
-		String prefixPath = request.getContextPath() + "/api/resource/";
+		String prefixPath = request.getContextPath() + request.getServletPath() + "/resource/";
 		String requestURI = request.getRequestURI();
 		String uri = requestURI.substring(prefixPath.length());
 		log.debug("load resource, uri: " + uri);
