@@ -5,7 +5,7 @@ Ext.onReady(function() {
 		layout : 'border',
 		items : [ {
 			region : 'north',
-			html : '<h1 class="x-panel-header">系统标题</h1>',
+			html : '<h1 class="x-panel-header">北极星智能平台联合实验室</h1>',
 			border : false,
 			margin : '0',
 			split : true
