@@ -6,14 +6,14 @@ Ext.onReady(function() {
 		layout : 'border',
 		items : [ {
 			region : 'north',
-			html : '<h1 class="x-panel-header">±±¼«ĞÇÖÇÄÜÆ½Ì¨ÁªºÏÊµÑéÊÒ</h1>',
+			html : '<h1 class="x-panel-header">åŒ—ææ˜Ÿæ™ºèƒ½å¹³å°è”åˆå®éªŒå®¤</h1>',
 			border : true,
 			margin : '0',
 			split : true
 		}, {
 			region : 'west',
 			collapsible : true,
-			title : 'µ¼º½Ê÷',
+			title : 'å¯¼èˆªæ ‘',
 			width : 150,
 			split : true,
 			border : true,
@@ -58,14 +58,14 @@ Ext.onReady(function() {
 			xtype : 'tabpanel',
 			items : [ {
 				rtl : false,
-				title : 'Ê×Ò³',
+				title : 'é¦–é¡µ',
 				html : '<p>wanglei is a dog!</p>'
 			}, {
-				title : 'Ä£¿é¹ÜÀí',
+				title : 'æ¨¡å—ç®¡ç†',
 				html : 'Hello world 2',
 				closable : true
 			}, {
-				title : 'ÓÃ»§¹ÜÀí',
+				title : 'ç”¨æˆ·ç®¡ç†',
 				html : 'Hello world 3',
 				closable : true
 			} ]
