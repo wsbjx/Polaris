@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 
  */
 @Controller
-@RequestMapping(value = "/resource")
-public class ResourceController
+@RequestMapping(value = "/view")
+public class ViewController
 {
 	Log log = LogFactory.getLog(getClass());
 
