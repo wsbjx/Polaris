@@ -25,7 +25,8 @@ Ext.onReady(function() {
 					expanded : true,
 					children : [ {
 						id : "node1",
-						text : "detention",
+						text : "百度",
+						url : "http://www.baidu.com",
 						leaf : true
 					}, {
 						id : "node2",
@@ -33,40 +34,53 @@ Ext.onReady(function() {
 						expanded : true,
 						children : [ {
 							id : "node3",
-							text : "book report",
+							text : "华为官网",
+							url : "http://www.huawei.com",
 							leaf : true
 						}, {
 							id : "node4",
-							text : "algebra",
+							text : "新浪",
+							url : "http://www.sina.com",
 							leaf : true
 						} ]
 					}, {
 						id : "node5",
-						text : "buy lottery tickets",
+						text : "Google",
+						url : "http://www.google.cn",
 						leaf : true
 					} ]
 				}
 			}),
 			listeners : {
 				itemclick : function(view, record) {
-					var nodeId = record.get("id");
-					alert("nodeId=" + nodeId);
+					var id = record.get("id");
+					var text = record.get("text");
+					var url = record.get("url");
+					if (url != null) {
+						var tabPanel = Ext.getCmp("tabpanel1");
+						var panel = tabPanel.getComponent(id);
+						if (panel == null) {
+							panel = Ext.create("Ext.panel.Panel", {
+								id : id,
+								title : text,
+								closable : true,
+								html : "<iframe src='" + url + "' width='100%' height='100%'></iframe>"
+							});
+							tabPanel.add(panel);
+						}
+						tabPanel.setActiveTab(panel);
+					}
 				}
 			}
 		}, {
+			id : "tabpanel1",
 			region : 'center',
 			xtype : 'tabpanel',
+			autoScroll : true,
 			items : [ {
+				id : "root",
 				title : '首页',
-				html : '<p>wanglei is a dog!</p>'
-			}, {
-				title : '模块管理',
-				html : 'Hello world 2',
-				closable : true
-			}, {
-				title : '用户管理',
-				html : 'Hello world 3',
-				closable : true
+				html : '<p>wanglei is a dog! 1</p>'
 			} ]
 		} ]
 	});

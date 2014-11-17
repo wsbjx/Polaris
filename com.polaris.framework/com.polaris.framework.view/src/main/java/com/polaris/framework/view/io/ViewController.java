@@ -42,12 +42,13 @@ public class ViewController
 	@RequestMapping(value = "**/*", method = RequestMethod.GET)
 	public void load(HttpServletRequest request, HttpServletResponse response)
 	{
-		String prefixPath = request.getContextPath() + request.getServletPath() + "/resource/";
+		String prefixPath = request.getContextPath() + request.getServletPath() + "/view/";
 		String requestURI = request.getRequestURI();
 		String uri = requestURI.substring(prefixPath.length());
 		log.debug("load resource, uri: " + uri);
 		String contentType = getContentType(request.getServletContext(), uri);
 		response.setContentType(contentType);
+		response.setCharacterEncoding("UTF-8");
 		InputStream is = null;
 		try
 		{
