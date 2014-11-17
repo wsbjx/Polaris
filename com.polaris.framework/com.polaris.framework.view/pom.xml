@@ -10,4 +10,13 @@
 	</parent>
 	<artifactId>com.polaris.framework.view</artifactId>
 	<packaging>jar</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>7.0.47</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>

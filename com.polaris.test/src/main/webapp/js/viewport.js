@@ -57,7 +57,6 @@ Ext.onReady(function() {
 			region : 'center',
 			xtype : 'tabpanel',
 			items : [ {
-				rtl : false,
 				title : '首页',
 				html : '<p>wanglei is a dog!</p>'
 			}, {
