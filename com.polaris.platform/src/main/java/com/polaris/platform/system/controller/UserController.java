@@ -12,16 +12,15 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.polaris.framework.common.restful.SimpleResponse;
 import com.polaris.platform.authorized.service.AuthorizedService;
-import com.polaris.platform.authorized.vo.AuthorizedAccount;
 import com.polaris.platform.system.service.UserService;
-import com.polaris.platform.system.vo.Module;
 import com.polaris.platform.system.vo.User;
 
 /**
@@ -30,30 +29,20 @@ import com.polaris.platform.system.vo.User;
  * @author wang.sheng
  */
 @Controller
-@SessionAttributes(AuthorizedAccount.HTTP_SESSION_KEY)
+@RequestMapping("/platform/system/user")
 public class UserController
 {
-	private final static String USER_MODULE_URL = "/system/user/list.html";
 	Log log = LogFactory.getLog(getClass());
 	@Resource
 	private UserService userService;
 	@Resource
 	private AuthorizedService authorizedService;
-	/**
-	 * 用户管理的模块
-	 */
-	private Module userModule;
 
 	@PostConstruct
-	public void initUserService()
+	protected void initUserService()
 	{
 		// 生成超级用户
 		userService.getSuperUser();
-		userModule = authorizedService.findModuleByURL(USER_MODULE_URL);
-		if (userModule == null)
-		{
-			log.warn("URL:" + USER_MODULE_URL + " Module is not found!");
-		}
 	}
 
 	/**
@@ -62,23 +51,23 @@ public class UserController
 	 * @param userId
 	 * @return
 	 */
-	@RequestMapping(value = "/system/user/load")
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> load(String userId)
+	public SimpleResponse getUser(@PathVariable String userId)
 	{
-		Map<String, Object> map = new HashMap<String, Object>();
+		SimpleResponse response = new SimpleResponse();
 		User user = userService.getUser(userId);
 		if (user == null)
 		{
-			map.put("success", false);
-			map.put("errorMessage", "没有找到用户信息,userId=" + userId);
+			response.setSuccess(false);
+			response.setMessage("没有找到用户信息,userId=" + userId);
 		}
 		else
 		{
-			map.put("success", true);
-			map.put("data", user);
+			response.setSuccess(true);
+			response.setData(user);
 		}
-		return map;
+		return response;
 	}
 
 	/**
@@ -88,9 +77,9 @@ public class UserController
 	 * @param bindingResult
 	 * @return
 	 */
-	@RequestMapping(value = "/system/user/save")
+	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public SimpleResponse save(@Valid User user, BindingResult userBindingResult)
+	public SimpleResponse save(@Valid @RequestBody User user, BindingResult userBindingResult)
 	{
 		SimpleResponse response = new SimpleResponse();
 		if (userBindingResult.hasErrors())
@@ -133,87 +122,45 @@ public class UserController
 	}
 
 	/**
-	 * 批量添加用户
+	 * 删除一个指定用户
 	 * 
-	 * @param users
+	 * @param userId
 	 * @return
 	 */
-	@RequestMapping(value = "/system/user/create")
+	@RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Object create(@RequestBody User[] users)
+	public SimpleResponse delete(@PathVariable String userId)
 	{
-		try
-		{
-			userService.addUsers(users);
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("success", true);
-			map.put("message", "用户批量添加成功!");
-			return map;
-		}
-		catch (Exception e)
-		{
-			log.warn("create User failed!", e);
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("success", false);
-			map.put("message", "用户批量添加失败!");
-			return map;
-		}
+		userService.deleteUser(userId);
+		SimpleResponse response = new SimpleResponse();
+		response.setMessage("用户删除成功!");
+		return response;
 	}
 
 	/**
-	 * 批量保存用户信息
+	 * 更新用户的角色列表
 	 * 
-	 * @param users
+	 * @param userId
+	 * @param roleIds
 	 * @return
 	 */
-	@RequestMapping(value = "/system/user/update")
+	@RequestMapping(value = "/{userId}/role", method = RequestMethod.POST)
 	@ResponseBody
-	public Object update(@RequestBody User[] users)
+	public Object updateUserRole(@PathVariable String userId, @RequestBody String[] roleIds)
 	{
-		for (User user : users)
-		{
-			userService.updateUser(user);
-		}
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("success", true);
-		map.put("message", "用户批量修改成功!");
-		return map;
-	}
-
-	@RequestMapping(value = "/system/user/destroy")
-	@ResponseBody
-	public Object destroy(@RequestBody User[] users)
-	{
-		for (User user : users)
-		{
-			userService.deleteUser(user.getId());
-		}
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("success", true);
-		map.put("message", "用户批量删除成功!");
-		return map;
-	}
-
-	@RequestMapping(value = "/system/user/updateUserRole")
-	@ResponseBody
-	public Object updateUserRole(String userId, String roleIds)
-	{
-		String[] roles = roleIds.split(",");
+		SimpleResponse response = new SimpleResponse();
 		try
 		{
-			userService.updateUserRoles(userId, roles);
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("success", true);
-			map.put("message", "用户角色修改成功!");
-			return map;
+			userService.updateUserRoles(userId, roleIds);
+			response.setSuccess(true);
+			response.setMessage("用户角色修改成功!");
 		}
 		catch (Exception e)
 		{
 			log.warn("updateUserRole failed!", e);
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("success", false);
-			map.put("message", "用户角色修改失败!");
-			return map;
+			response.setSuccess(false);
+			response.setMessage("用户角色修改失败!");
 		}
+		return response;
 	}
 }

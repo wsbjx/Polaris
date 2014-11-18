@@ -1,6 +1,5 @@
 package com.polaris.platform.system.controller;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
@@ -16,33 +15,23 @@ import com.polaris.framework.common.restful.SimpleResponse;
 import com.polaris.platform.authorized.service.AuthorizedService;
 import com.polaris.platform.authorized.vo.AuthorizedAccount;
 import com.polaris.platform.system.service.RoleService;
-import com.polaris.platform.system.vo.Module;
 import com.polaris.platform.system.vo.Role;
 
+/**
+ * 角色管理的控制器
+ * 
+ * @author wang.sheng
+ * 
+ */
 @Controller
 @SessionAttributes(AuthorizedAccount.HTTP_SESSION_KEY)
 public class RoleController
 {
-	private final static String ROLE_MODULE_URL = "/system/role/list.html";
 	Log log = LogFactory.getLog(getClass());
 	@Resource
 	private RoleService roleService;
 	@Resource
 	private AuthorizedService authorizedService;
-	/**
-	 * 角色管理的模块
-	 */
-	private Module roleModule;
-
-	@PostConstruct
-	public void initRoleService()
-	{
-		roleModule = authorizedService.findModuleByURL(ROLE_MODULE_URL);
-		if (roleModule == null)
-		{
-			log.warn("URL:" + ROLE_MODULE_URL + " Module is not found!");
-		}
-	}
 
 	/**
 	 * 批量添加角色

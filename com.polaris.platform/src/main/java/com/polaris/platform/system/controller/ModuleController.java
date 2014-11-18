@@ -3,7 +3,6 @@ package com.polaris.platform.system.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
@@ -29,26 +28,11 @@ import com.polaris.platform.system.vo.Module;
 @SessionAttributes(AuthorizedAccount.HTTP_SESSION_KEY)
 public class ModuleController
 {
-	private final static String MODULE_MODULE_URL = "/system/module/list.html";
 	Log log = LogFactory.getLog(getClass());
 	@Resource
 	private ModuleService moduleService;
 	@Resource
 	private AuthorizedService authorizedService;
-	/**
-	 * 模块管理的模块
-	 */
-	private Module moduleModule;
-
-	@PostConstruct
-	public void initResourceService()
-	{
-		moduleModule = authorizedService.findModuleByURL(MODULE_MODULE_URL);
-		if (moduleModule == null)
-		{
-			log.warn("URL:" + MODULE_MODULE_URL + " Module is not found!");
-		}
-	}
 
 	@RequestMapping(value = "/system/module/load")
 	@ResponseBody

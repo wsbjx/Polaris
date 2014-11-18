@@ -131,7 +131,7 @@ public class UserService
 		User u = userDao.getUserByUsername(user.getUsername());
 		if (u != null)
 		{
-			throw new Exception("username=" + user.getUsername());
+			throw new Exception("用户名已被占用:" + user.getUsername());
 		}
 		user.setPassword(securityService.encrypt(user.getPassword()));
 		userDao.add(user);

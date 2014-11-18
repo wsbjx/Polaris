@@ -36,6 +36,9 @@ import com.polaris.platform.system.vo.User;
 public class AuthorizedController
 {
 	Log log = LogFactory.getLog(getClass());
+
+	private static final String COOKIE_PATH = "com.polaris.platform.cookie";
+
 	@Resource
 	private AuthorizedService authorizedService;
 	@Resource
@@ -166,7 +169,7 @@ public class AuthorizedController
 	private void removeCookie(HttpServletResponse response)
 	{
 		// 清除cookie
-		Cookie cookie = new Cookie("SIRIUS_COOKIE", "");
+		Cookie cookie = new Cookie(COOKIE_PATH, "");
 		cookie.setPath("/");
 		cookie.setMaxAge(-1);
 		log.info("remove Cookie");
@@ -181,7 +184,7 @@ public class AuthorizedController
 	private void addCookie(HttpServletResponse response, String userId)
 	{
 		String des = securityService.encrypt(userId);
-		Cookie cookie = new Cookie("SIRIUS_COOKIE", des);
+		Cookie cookie = new Cookie(COOKIE_PATH, des);
 		cookie.setPath("/");
 		cookie.setMaxAge(3600 * 24 * 30);
 		log.info("addCookie value=" + des);
