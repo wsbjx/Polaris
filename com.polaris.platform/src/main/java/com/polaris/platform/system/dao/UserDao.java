@@ -23,6 +23,11 @@ public class UserDao
 		return hibernateTemplate.queryForObject("from User t where t.id=?", new Object[] { id }, User.class);
 	}
 
+	public User[] getUsers()
+	{
+		return hibernateTemplate.queryForArray("from User t order by t.username", null, User.class);
+	}
+
 	public User getUserByUsername(String username)
 	{
 

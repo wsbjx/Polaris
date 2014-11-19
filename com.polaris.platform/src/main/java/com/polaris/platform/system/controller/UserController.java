@@ -9,14 +9,13 @@ import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.polaris.framework.common.restful.SimpleResponse;
 import com.polaris.platform.authorized.service.AuthorizedService;
@@ -28,7 +27,7 @@ import com.polaris.platform.system.vo.User;
  * 
  * @author wang.sheng
  */
-@Controller
+@RestController
 @RequestMapping("/platform/system/user")
 public class UserController
 {
@@ -46,13 +45,23 @@ public class UserController
 	}
 
 	/**
+	 * 获取所有的用户信息
+	 * 
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET)
+	public User[] getUsers()
+	{
+		return userService.getUsers();
+	}
+
+	/**
 	 * 在表单中加载数据
 	 * 
 	 * @param userId
 	 * @return
 	 */
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-	@ResponseBody
 	public SimpleResponse getUser(@PathVariable String userId)
 	{
 		SimpleResponse response = new SimpleResponse();
@@ -78,7 +87,6 @@ public class UserController
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	@ResponseBody
 	public SimpleResponse save(@Valid @RequestBody User user, BindingResult userBindingResult)
 	{
 		SimpleResponse response = new SimpleResponse();
@@ -128,7 +136,6 @@ public class UserController
 	 * @return
 	 */
 	@RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
-	@ResponseBody
 	public SimpleResponse delete(@PathVariable String userId)
 	{
 		userService.deleteUser(userId);
@@ -145,8 +152,7 @@ public class UserController
 	 * @return
 	 */
 	@RequestMapping(value = "/{userId}/role", method = RequestMethod.POST)
-	@ResponseBody
-	public Object updateUserRole(@PathVariable String userId, @RequestBody String[] roleIds)
+	public SimpleResponse updateUserRole(@PathVariable String userId, @RequestBody String[] roleIds)
 	{
 		SimpleResponse response = new SimpleResponse();
 		try

@@ -22,5 +22,10 @@
 			<artifactId>com.polaris.framework.view</artifactId>
 			<version>1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.polaris.framework</groupId>
+			<artifactId>com.polaris.platform</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 </project>

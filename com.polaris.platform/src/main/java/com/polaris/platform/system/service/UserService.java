@@ -188,6 +188,11 @@ public class UserService
 		return userDao.getUser(userId);
 	}
 
+	public User[] getUsers()
+	{
+		return userDao.getUsers();
+	}
+
 	public void updateUser(User user)
 	{
 		userDao.update(user);

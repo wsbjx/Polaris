@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.Length;
  * @author wang.sheng
  */
 @Entity
-@Table(name = "TRole")
+@Table
 public class Role implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;

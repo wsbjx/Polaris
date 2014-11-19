@@ -45,6 +45,10 @@ public class ViewController
 		String prefixPath = request.getContextPath() + request.getServletPath() + "/view/";
 		String requestURI = request.getRequestURI();
 		String uri = requestURI.substring(prefixPath.length());
+		if (uri.endsWith("/"))
+		{
+			uri += "index.html";
+		}
 		log.debug("load resource, uri: " + uri);
 		String contentType = getContentType(request.getServletContext(), uri);
 		response.setContentType(contentType);
@@ -53,11 +57,27 @@ public class ViewController
 		try
 		{
 			is = resourceLoader.getInputStream(uri);
-			IOUtils.copy(is, response.getOutputStream());
+			if (is == null)
+			{
+				response.sendError(HttpServletResponse.SC_NOT_FOUND, "对应页面找不到:" + uri);
+			}
+			else
+			{
+				// 复制数据流
+				IOUtils.copy(is, response.getOutputStream());
+			}
 		}
 		catch (Exception e)
 		{
 			log.warn("load resource failed! uri: " + uri, e);
+			try
+			{
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "页面打开错误:" + uri);
+			}
+			catch (IOException e1)
+			{
+				log.warn("sendError failed!", e1);
+			}
 		}
 		finally
 		{
