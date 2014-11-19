@@ -19,15 +19,14 @@ Ext.onReady(function() {
 			frame : true,
 			title : "用户管理",
 			store : userStore,
-			iconCls : "icon-user",
 			columns : [ {
 				text : "用户ID",
-				width : 50,
+				width : 250,
 				sortable : true,
 				dataIndex : "id"
 			}, {
 				text : "用户名",
-				flex : 1,
+				width : 250,
 				sortable : true,
 				dataIndex : "username",
 				field : {
@@ -35,7 +34,7 @@ Ext.onReady(function() {
 				}
 			}, {
 				header : "姓名",
-				width : 120,
+				width : 200,
 				sortable : true,
 				dataIndex : "name",
 				field : {
@@ -43,7 +42,7 @@ Ext.onReady(function() {
 				}
 			}, {
 				text : "备注",
-				width : 120,
+				flex : 1,
 				sortable : true,
 				dataIndex : "remark",
 				field : {

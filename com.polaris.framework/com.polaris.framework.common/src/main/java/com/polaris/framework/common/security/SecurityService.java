@@ -15,6 +15,8 @@ public class SecurityService
 {
 	Log log = LogFactory.getLog(getClass());
 
+	private static final String KEY = "com.polaris.framework";
+
 	/**
 	 * 将明文加密为密文
 	 * 
@@ -25,7 +27,7 @@ public class SecurityService
 	{
 		try
 		{
-			byte[] bytes = AESUtils.encrypt(value.getBytes(), null);
+			byte[] bytes = AESUtils.encrypt(value.getBytes(), KEY);
 			return new String(bytes);
 		}
 		catch (Exception e)
@@ -45,7 +47,7 @@ public class SecurityService
 	{
 		try
 		{
-			byte[] bytes = AESUtils.decrypt(value.getBytes(), null);
+			byte[] bytes = AESUtils.decrypt(value.getBytes(), KEY);
 			return new String(bytes);
 		}
 		catch (Exception e)

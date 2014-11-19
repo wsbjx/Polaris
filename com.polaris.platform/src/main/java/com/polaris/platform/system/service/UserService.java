@@ -25,7 +25,7 @@ import com.polaris.platform.system.vo.UserRoleRel;
  * @author wang.sheng
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional(value = "hibernateTransactionManager", propagation = Propagation.REQUIRED)
 public class UserService
 {
 	Log log = LogFactory.getLog(getClass());
