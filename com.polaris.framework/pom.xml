@@ -9,7 +9,6 @@
 	<modules>
 		<module>com.polaris.framework.common</module>
 		<module>com.polaris.framework.webapp</module>
-		<module>../com.polaris.platform</module>
 	</modules>
 	<dependencies>
 		<dependency>
