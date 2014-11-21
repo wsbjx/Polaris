@@ -1,4 +1,4 @@
-package com.polaris.framework.view.io;
+package com.polaris.framework.webapp;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 
  */
 @Controller
-@RequestMapping(value = "/view")
+@RequestMapping(value = "/webapp")
 public class ViewController
 {
 	Log log = LogFactory.getLog(getClass());

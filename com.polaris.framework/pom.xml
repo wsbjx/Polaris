@@ -8,10 +8,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>com.polaris.framework.common</module>
-		<module>com.polaris.framework.toolkit</module>
-		<module>com.polaris.framework.view</module>
+		<module>com.polaris.framework.webapp</module>
 		<module>../com.polaris.platform</module>
-		<module>../com.polaris.test</module>
 	</modules>
 	<dependencies>
 		<dependency>

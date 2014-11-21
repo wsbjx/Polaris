@@ -8,6 +8,6 @@
 		<artifactId>com.polaris.framework</artifactId>
 		<version>1.0</version>
 	</parent>
-	<artifactId>com.polaris.framework.toolkit</artifactId>
+	<artifactId>com.polaris.framework.webapp</artifactId>
 	<packaging>jar</packaging>
 </project>
