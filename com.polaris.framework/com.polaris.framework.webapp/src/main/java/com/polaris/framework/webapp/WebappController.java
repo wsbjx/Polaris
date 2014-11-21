@@ -29,6 +29,7 @@ public class WebappController
 	Log log = LogFactory.getLog(getClass());
 
 	private final static String DEFAULT_CONTENT_TYPE = "text/html";
+	public final static String PREFIX_PATH = "/webapp";
 
 	@Resource
 	private WebappLoader resourceLoader;
@@ -42,7 +43,7 @@ public class WebappController
 	@RequestMapping(value = "**/*", method = RequestMethod.GET)
 	public void load(HttpServletRequest request, HttpServletResponse response)
 	{
-		String prefixPath = request.getContextPath() + request.getServletPath() + "/view/";
+		String prefixPath = request.getContextPath() + request.getServletPath() + PREFIX_PATH + "/";
 		String requestURI = request.getRequestURI();
 		String uri = requestURI.substring(prefixPath.length());
 		if (uri.endsWith("/"))
