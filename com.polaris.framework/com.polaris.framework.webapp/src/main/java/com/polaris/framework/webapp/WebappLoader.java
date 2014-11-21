@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service
-public class ResourceLoader
+public class WebappLoader
 {
 	Log log = LogFactory.getLog(getClass());
 

@@ -24,14 +24,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping(value = "/webapp")
-public class ViewController
+public class WebappController
 {
 	Log log = LogFactory.getLog(getClass());
 
 	private final static String DEFAULT_CONTENT_TYPE = "text/html";
 
 	@Resource
-	private ResourceLoader resourceLoader;
+	private WebappLoader resourceLoader;
 
 	/**
 	 * 加载指定资源
