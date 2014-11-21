@@ -16,9 +16,10 @@ Ext.onReady(function() {
 		items : [ Ext.create("Ext.grid.Panel", {
 			id : "userGrid",
 			region : "center",
-			frame : true,
+			frame : false,
 			title : "用户管理",
 			store : userStore,
+			preventHeader : true,
 			columns : [ {
 				text : "用户ID",
 				width : 250,

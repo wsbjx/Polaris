@@ -69,7 +69,7 @@ Ext.onReady(function() {
 								id : id,
 								title : text,
 								closable : true,
-								html : "<iframe src='" + url + "' width='100%' height='100%'></iframe>"
+								html : "<iframe src='" + url + "' width='100%' height='100%' frameborder='0' border='0' marginwidth='0' marginheight='0'></iframe>"
 							});
 							tabPanel.add(panel);
 						}
