@@ -12,10 +12,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.polaris.framework.webapp.view.annotation.TagLib;
-import com.polaris.framework.webapp.view.ext.api.EModule;
-import com.polaris.framework.webapp.view.ext.api.ERootBody;
-import com.polaris.framework.webapp.view.ext.jsp.ComponentSupport;
-import com.polaris.framework.webapp.view.ext.utils.ExtAnnotationUtils;
+import com.polaris.framework.webapp.view.extjs.api.EModule;
+import com.polaris.framework.webapp.view.extjs.api.ERootBody;
+import com.polaris.framework.webapp.view.extjs.jsp.ComponentSupport;
+import com.polaris.framework.webapp.view.extjs.utils.ExtAnnotationUtils;
 
 /**
  * 在页面上生成ext.onready语句以及<script>标记

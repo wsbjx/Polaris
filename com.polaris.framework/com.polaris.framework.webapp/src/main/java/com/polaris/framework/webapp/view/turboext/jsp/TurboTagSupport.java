@@ -6,7 +6,7 @@ import javax.servlet.jsp.tagext.Tag;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.polaris.framework.webapp.view.ext.api.ERootBody;
+import com.polaris.framework.webapp.view.extjs.api.ERootBody;
 
 /**
  * 抽象的加强型标签
