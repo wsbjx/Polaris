@@ -7,5 +7,5 @@ package com.polaris.framework.webapp.view.ext.jsp;
  */
 public interface ComponentSupport
 {
-    public Object getComponent();
+	public Object getComponent();
 }

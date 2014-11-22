@@ -9,10 +9,10 @@ import com.polaris.framework.webapp.view.ext.api.container.EContainer;
 @Ext(name = "toolbar", type = VarType.CONFIG)
 public class EToolbar extends EContainer
 {
-    
-    @TagDocked
-    public void addSeparator(ESeparator separator)
-    {
-        items.add("-");
-    }
+
+	@TagDocked
+	public void addSeparator(ESeparator separator)
+	{
+		items.add("-");
+	}
 }

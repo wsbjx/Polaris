@@ -6,6 +6,6 @@ import com.polaris.framework.webapp.view.ext.api.form.field.EFileField;
 @TagLib(name = "filefield", component = EFileField.class)
 public class FileFieldTag extends AbstractFieldTag
 {
-    private static final long serialVersionUID = 1L;
-    
+	private static final long serialVersionUID = 1L;
+
 }

@@ -8,19 +8,19 @@ import com.polaris.framework.webapp.view.ext.api.EModule;
 @Ext(name = "Ext.selection.CheckboxModel", type = VarType.CREATE)
 public class ECheckboxModel implements EModule
 {
-    private String varName;
-    
-    @Override
-    public String getVarName()
-    {
-        // TODO Auto-generated method stub
-        return varName;
-    }
-    
-    @TagAttribute
-    public void setVarName(String varName)
-    {
-        this.varName = varName;
-    }
-    
+	private String varName;
+
+	@Override
+	public String getVarName()
+	{
+		// TODO Auto-generated method stub
+		return varName;
+	}
+
+	@TagAttribute
+	public void setVarName(String varName)
+	{
+		this.varName = varName;
+	}
+
 }

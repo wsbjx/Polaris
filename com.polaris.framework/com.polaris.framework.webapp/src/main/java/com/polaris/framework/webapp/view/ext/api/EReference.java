@@ -7,23 +7,23 @@ package com.polaris.framework.webapp.view.ext.api;
  */
 public class EReference
 {
-    private String name;
-    private Object target;
-    
-    public EReference(String name, Object target)
-    {
-        this.name = name;
-        this.target = target;
-    }
-    
-    public String getName()
-    {
-        return name;
-    }
-    
-    public Object getTarget()
-    {
-        return target;
-    }
-    
+	private String name;
+	private Object target;
+
+	public EReference(String name, Object target)
+	{
+		this.name = name;
+		this.target = target;
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public Object getTarget()
+	{
+		return target;
+	}
+
 }

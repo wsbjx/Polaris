@@ -14,17 +14,17 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface Ext
 {
-    /**
-     * 定义的类型
-     * 
-     * @return
-     */
-    public VarType type() default VarType.CONFIG;
-    
-    /**
-     * 名称
-     * 
-     * @return
-     */
-    public String name() default "";
+	/**
+	 * 定义的类型
+	 * 
+	 * @return
+	 */
+	public VarType type() default VarType.CONFIG;
+
+	/**
+	 * 名称
+	 * 
+	 * @return
+	 */
+	public String name() default "";
 }

@@ -15,10 +15,10 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface TagDocked
 {
-    /**
-     * 附加组件的类型,可以是抽象类.默认是Object类
-     * 
-     * @return
-     */
-    public Class<?> dockType() default Object.class;
+	/**
+	 * 附加组件的类型,可以是抽象类.默认是Object类
+	 * 
+	 * @return
+	 */
+	public Class<?> dockType() default Object.class;
 }

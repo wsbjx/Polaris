@@ -6,6 +6,6 @@ import com.polaris.framework.webapp.view.ext.api.form.field.EDisplayField;
 @TagLib(name = "displayfield", component = EDisplayField.class)
 public class DisplayFieldTag extends AbstractFieldTag
 {
-    private static final long serialVersionUID = 1L;
-    
+	private static final long serialVersionUID = 1L;
+
 }

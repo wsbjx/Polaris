@@ -9,11 +9,11 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface DataField
 {
-    public String name() default "";
-    
-    public String type() default "";
-    
-    public String dateFormat() default "";
-    
-    public boolean isIdProperty() default false;
+	public String name() default "";
+
+	public String type() default "";
+
+	public String dateFormat() default "";
+
+	public boolean isIdProperty() default false;
 }

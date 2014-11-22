@@ -10,24 +10,24 @@ import com.polaris.framework.webapp.view.ext.api.panel.EAbstractPanel;
 @Ext(name = "Ext.Viewport", type = VarType.CREATE)
 public class EViewport extends EContainer implements EModule
 {
-    protected String varName;
-    
-    @Override
-    public String getVarName()
-    {
-        // TODO Auto-generated method stub
-        return this.varName;
-    }
-    
-    @TagAttribute
-    public void setVarName(String varName)
-    {
-        this.varName = varName;
-    }
-    
-    @TagDocked
-    public void addPanel(EAbstractPanel panel)
-    {
-        super.items.add(panel);
-    }
+	protected String varName;
+
+	@Override
+	public String getVarName()
+	{
+		// TODO Auto-generated method stub
+		return this.varName;
+	}
+
+	@TagAttribute
+	public void setVarName(String varName)
+	{
+		this.varName = varName;
+	}
+
+	@TagDocked
+	public void addPanel(EAbstractPanel panel)
+	{
+		super.items.add(panel);
+	}
 }

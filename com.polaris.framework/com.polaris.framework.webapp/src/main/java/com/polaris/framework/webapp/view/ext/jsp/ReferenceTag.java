@@ -13,25 +13,25 @@ import com.polaris.framework.webapp.view.ext.api.ERootBody;
 @TagLib(name = "reference", description = "引用变量定义", component = EReference.class, bodyContent = "empty")
 public class ReferenceTag extends ExtTagSupport
 {
-    private static final long serialVersionUID = 1L;
-    @TagAttribute(required = true)
-    private String            name;
-    
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-    
-    @Override
-    protected Object createComponent()
-    {
-        ERootBody root = super.getRootBody();
-        Object target = root.findModule(name);
-        if(target == null)
-        {
-            log.error("Reference target not found! varName:" + name);
-            return null;
-        }
-        return new EReference(name, target);
-    }
+	private static final long serialVersionUID = 1L;
+	@TagAttribute(required = true)
+	private String name;
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+	@Override
+	protected Object createComponent()
+	{
+		ERootBody root = super.getRootBody();
+		Object target = root.findModule(name);
+		if (target == null)
+		{
+			log.error("Reference target not found! varName:" + name);
+			return null;
+		}
+		return new EReference(name, target);
+	}
 }

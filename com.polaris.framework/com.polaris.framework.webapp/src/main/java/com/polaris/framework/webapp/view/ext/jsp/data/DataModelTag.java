@@ -8,20 +8,20 @@ import com.polaris.framework.webapp.view.ext.jsp.ExtTagSupport;
 @TagLib(name = "datamodel", component = EDataModel.class)
 public class DataModelTag extends ExtTagSupport
 {
-    private static final long serialVersionUID = 1L;
-    @TagAttribute
-    protected String          idProperty;
-    @TagAttribute
-    protected String          define;
-    
-    public void setIdProperty(String idProperty)
-    {
-        this.idProperty = idProperty;
-    }
-    
-    public void setDefine(String define)
-    {
-        this.define = define;
-    }
-    
+	private static final long serialVersionUID = 1L;
+	@TagAttribute
+	protected String idProperty;
+	@TagAttribute
+	protected String define;
+
+	public void setIdProperty(String idProperty)
+	{
+		this.idProperty = idProperty;
+	}
+
+	public void setDefine(String define)
+	{
+		this.define = define;
+	}
+
 }

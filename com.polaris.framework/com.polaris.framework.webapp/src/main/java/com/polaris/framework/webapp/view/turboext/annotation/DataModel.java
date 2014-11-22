@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface DataModel
 {
-    public String type() default "ajax";
+	public String type() default "ajax";
 }

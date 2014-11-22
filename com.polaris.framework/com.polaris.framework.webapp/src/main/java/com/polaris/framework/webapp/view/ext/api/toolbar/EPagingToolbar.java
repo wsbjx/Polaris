@@ -9,21 +9,21 @@ import com.polaris.framework.webapp.view.ext.annotation.VarType;
 @Ext(name = "pagingtoolbar", type = VarType.CONFIG)
 public class EPagingToolbar extends EToolbar
 {
-    @ExtChild
-    protected String  store;
-    @ExtField
-    protected Boolean displayInfo;
-    
-    @TagAttribute
-    public void setStore(String store)
-    {
-        this.store = store;
-    }
-    
-    @TagAttribute
-    public void setDisplayInfo(Boolean displayInfo)
-    {
-        this.displayInfo = displayInfo;
-    }
-    
+	@ExtChild
+	protected String store;
+	@ExtField
+	protected Boolean displayInfo;
+
+	@TagAttribute
+	public void setStore(String store)
+	{
+		this.store = store;
+	}
+
+	@TagAttribute
+	public void setDisplayInfo(Boolean displayInfo)
+	{
+		this.displayInfo = displayInfo;
+	}
+
 }

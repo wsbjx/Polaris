@@ -6,5 +6,5 @@ import com.polaris.framework.webapp.view.ext.annotation.VarType;
 @Ext(name = "filefield", type = VarType.CONFIG)
 public class EFileField extends EAbstractField
 {
-    
+
 }

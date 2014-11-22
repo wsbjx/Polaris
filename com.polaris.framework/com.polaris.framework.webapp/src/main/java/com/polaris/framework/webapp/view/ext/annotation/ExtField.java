@@ -14,17 +14,17 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface ExtField
 {
-    /**
-     * 在EXT脚本中生成的名称.默认取属性的名称
-     * 
-     * @return
-     */
-    public String name() default "";
-    
-    /**
-     * 是否要翻译成JSON字符串
-     * 
-     * @return
-     */
-    public boolean isJson() default false;
+	/**
+	 * 在EXT脚本中生成的名称.默认取属性的名称
+	 * 
+	 * @return
+	 */
+	public String name() default "";
+
+	/**
+	 * 是否要翻译成JSON字符串
+	 * 
+	 * @return
+	 */
+	public boolean isJson() default false;
 }

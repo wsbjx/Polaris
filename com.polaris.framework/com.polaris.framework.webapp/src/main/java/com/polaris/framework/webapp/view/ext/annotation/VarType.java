@@ -7,5 +7,5 @@ package com.polaris.framework.webapp.view.ext.annotation;
  */
 public enum VarType
 {
-    CREATE, DEFINE, CONFIG, UX;
+	CREATE, DEFINE, CONFIG, UX;
 }

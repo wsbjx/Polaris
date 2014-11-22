@@ -9,13 +9,13 @@ import com.polaris.framework.webapp.view.ext.api.container.EContainer;
 @Ext(name = "fieldset", type = VarType.CONFIG)
 public class EFieldSet extends EContainer
 {
-    @ExtField
-    protected String title;
-    
-    @TagAttribute
-    public void setTitle(String title)
-    {
-        this.title = title;
-    }
-    
+	@ExtField
+	protected String title;
+
+	@TagAttribute
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+
 }

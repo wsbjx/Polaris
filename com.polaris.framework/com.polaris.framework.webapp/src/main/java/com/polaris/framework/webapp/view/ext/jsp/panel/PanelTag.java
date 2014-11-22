@@ -6,6 +6,6 @@ import com.polaris.framework.webapp.view.ext.api.panel.EPanel;
 @TagLib(name = "panel", component = EPanel.class)
 public class PanelTag extends AbstractPanelTag
 {
-    private static final long serialVersionUID = 1L;
-    
+	private static final long serialVersionUID = 1L;
+
 }

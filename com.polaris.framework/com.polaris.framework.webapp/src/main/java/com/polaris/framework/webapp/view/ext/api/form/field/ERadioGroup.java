@@ -6,5 +6,5 @@ import com.polaris.framework.webapp.view.ext.annotation.VarType;
 @Ext(name = "radiogroup", type = VarType.CONFIG)
 public class ERadioGroup extends ECheckboxGroup
 {
-    
+
 }

@@ -11,6 +11,6 @@ import com.polaris.framework.webapp.view.ext.api.data.EArrayStore;
 @TagLib(name = "arraystore", component = EArrayStore.class)
 public class ArrayStoreTag extends StoreTag
 {
-    private static final long serialVersionUID = 1L;
-    
+	private static final long serialVersionUID = 1L;
+
 }

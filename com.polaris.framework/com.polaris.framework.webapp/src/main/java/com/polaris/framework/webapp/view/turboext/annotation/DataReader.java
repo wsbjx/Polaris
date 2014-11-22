@@ -9,9 +9,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface DataReader
 {
-    public String root() default "results";
-    
-    public String totalProperty() default "totalCount";
-    
-    public String successProperty() default "success";
+	public String root() default "results";
+
+	public String totalProperty() default "totalCount";
+
+	public String successProperty() default "success";
 }

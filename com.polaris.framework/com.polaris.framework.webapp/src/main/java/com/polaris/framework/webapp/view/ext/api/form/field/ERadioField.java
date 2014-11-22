@@ -6,5 +6,5 @@ import com.polaris.framework.webapp.view.ext.annotation.VarType;
 @Ext(name = "radiofield", type = VarType.CONFIG)
 public class ERadioField extends ECheckboxField
 {
-    
+
 }

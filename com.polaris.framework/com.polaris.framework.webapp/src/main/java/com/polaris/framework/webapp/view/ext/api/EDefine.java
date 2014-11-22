@@ -7,5 +7,5 @@ package com.polaris.framework.webapp.view.ext.api;
  */
 public interface EDefine extends EModule
 {
-    public String getDefine();
+	public String getDefine();
 }

@@ -7,10 +7,10 @@ package com.polaris.framework.webapp.view.ext.jsp;
  */
 public class TagAttributeNotFoundException extends Exception
 {
-    private static final long serialVersionUID = 1L;
-    
-    public TagAttributeNotFoundException(String msg)
-    {
-        super(msg);
-    }
+	private static final long serialVersionUID = 1L;
+
+	public TagAttributeNotFoundException(String msg)
+	{
+		super(msg);
+	}
 }

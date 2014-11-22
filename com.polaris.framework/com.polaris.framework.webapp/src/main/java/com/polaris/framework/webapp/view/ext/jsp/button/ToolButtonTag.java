@@ -6,6 +6,6 @@ import com.polaris.framework.webapp.view.ext.api.button.EToolButton;
 @TagLib(name = "toolbutton", component = EToolButton.class)
 public class ToolButtonTag extends ButtonTag
 {
-    private static final long serialVersionUID = 1L;
-    
+	private static final long serialVersionUID = 1L;
+
 }

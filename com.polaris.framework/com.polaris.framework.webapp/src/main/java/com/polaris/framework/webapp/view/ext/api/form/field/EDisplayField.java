@@ -6,5 +6,5 @@ import com.polaris.framework.webapp.view.ext.annotation.VarType;
 @Ext(name = "displayfield", type = VarType.CONFIG)
 public class EDisplayField extends EAbstractField
 {
-    
+
 }

@@ -13,13 +13,13 @@ import com.polaris.framework.webapp.view.ext.jsp.container.ContainerTag;
 @TagLib(name = "fieldset", component = EFieldSet.class)
 public class FieldSetTag extends ContainerTag
 {
-    private static final long serialVersionUID = 1L;
-    @TagAttribute
-    protected String          title;
-    
-    public void setTitle(String title)
-    {
-        this.title = title;
-    }
-    
+	private static final long serialVersionUID = 1L;
+	@TagAttribute
+	protected String title;
+
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+
 }

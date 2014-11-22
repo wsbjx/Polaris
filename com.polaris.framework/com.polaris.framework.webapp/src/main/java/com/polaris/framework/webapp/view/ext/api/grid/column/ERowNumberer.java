@@ -8,21 +8,21 @@ import com.polaris.framework.webapp.view.ext.annotation.VarType;
 @Ext(name = "Ext.grid.RowNumberer", type = VarType.CREATE)
 public class ERowNumberer
 {
-    @ExtField
-    protected Integer width;
-    @ExtField
-    protected Boolean sortable;
-    
-    @TagAttribute
-    public void setWidth(Integer width)
-    {
-        this.width = width;
-    }
-    
-    @TagAttribute
-    public void setSortable(Boolean sortable)
-    {
-        this.sortable = sortable;
-    }
-    
+	@ExtField
+	protected Integer width;
+	@ExtField
+	protected Boolean sortable;
+
+	@TagAttribute
+	public void setWidth(Integer width)
+	{
+		this.width = width;
+	}
+
+	@TagAttribute
+	public void setSortable(Boolean sortable)
+	{
+		this.sortable = sortable;
+	}
+
 }

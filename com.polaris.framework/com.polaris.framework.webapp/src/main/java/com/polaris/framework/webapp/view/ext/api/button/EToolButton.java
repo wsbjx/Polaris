@@ -16,37 +16,37 @@ import com.polaris.framework.webapp.view.ext.api.EComponent;
 @Ext(name = "button", type = VarType.CONFIG)
 public class EToolButton extends EComponent
 {
-    @ExtField
-    protected String text;
-    @ExtField
-    protected String tooltip;
-    @ExtChild
-    protected String handler;
-    @ExtField
-    protected String iconCls;
-    
-    @TagAttribute
-    public void setIconCls(String iconCls)
-    {
-        this.iconCls = iconCls;
-    }
-    
-    @TagAttribute
-    public void setText(String text)
-    {
-        this.text = text;
-    }
-    
-    @TagAttribute
-    public void setTooltip(String tooltip)
-    {
-        this.tooltip = tooltip;
-    }
-    
-    @TagAttribute
-    @TagContent
-    public void setHandler(String handler)
-    {
-        this.handler = handler;
-    }
+	@ExtField
+	protected String text;
+	@ExtField
+	protected String tooltip;
+	@ExtChild
+	protected String handler;
+	@ExtField
+	protected String iconCls;
+
+	@TagAttribute
+	public void setIconCls(String iconCls)
+	{
+		this.iconCls = iconCls;
+	}
+
+	@TagAttribute
+	public void setText(String text)
+	{
+		this.text = text;
+	}
+
+	@TagAttribute
+	public void setTooltip(String tooltip)
+	{
+		this.tooltip = tooltip;
+	}
+
+	@TagAttribute
+	@TagContent
+	public void setHandler(String handler)
+	{
+		this.handler = handler;
+	}
 }

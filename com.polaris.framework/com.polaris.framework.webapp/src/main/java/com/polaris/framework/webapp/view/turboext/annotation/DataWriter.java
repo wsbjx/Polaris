@@ -9,9 +9,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface DataWriter
 {
-    public boolean allowSingle() default false;
-    
-    public String type() default "json";
-    
-    public boolean writeAllFields() default true;
+	public boolean allowSingle() default false;
+
+	public String type() default "json";
+
+	public boolean writeAllFields() default true;
 }

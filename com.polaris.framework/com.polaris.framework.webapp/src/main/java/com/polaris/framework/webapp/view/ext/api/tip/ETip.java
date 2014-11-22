@@ -9,21 +9,21 @@ import com.polaris.framework.webapp.view.ext.api.panel.EPanel;
 @Ext(name = "Ext.tip.Tip", type = VarType.CREATE)
 public class ETip extends EPanel
 {
-    @ExtField
-    protected Boolean constrainPosition;
-    @ExtField
-    protected Boolean shadow;
-    
-    @TagAttribute
-    public void setConstrainPosition(Boolean constrainPosition)
-    {
-        this.constrainPosition = constrainPosition;
-    }
-    
-    @TagAttribute
-    public void setShadow(Boolean shadow)
-    {
-        this.shadow = shadow;
-    }
-    
+	@ExtField
+	protected Boolean constrainPosition;
+	@ExtField
+	protected Boolean shadow;
+
+	@TagAttribute
+	public void setConstrainPosition(Boolean constrainPosition)
+	{
+		this.constrainPosition = constrainPosition;
+	}
+
+	@TagAttribute
+	public void setShadow(Boolean shadow)
+	{
+		this.shadow = shadow;
+	}
+
 }

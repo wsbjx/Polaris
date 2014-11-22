@@ -7,5 +7,5 @@ package com.polaris.framework.webapp.view.ext.api;
  */
 public interface EModule
 {
-    public String getVarName();
+	public String getVarName();
 }
