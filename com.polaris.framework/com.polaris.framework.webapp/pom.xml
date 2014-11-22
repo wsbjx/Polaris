@@ -10,4 +10,6 @@
 	</parent>
 	<artifactId>com.polaris.framework.webapp</artifactId>
 	<packaging>jar</packaging>
+	
+	
 </project>

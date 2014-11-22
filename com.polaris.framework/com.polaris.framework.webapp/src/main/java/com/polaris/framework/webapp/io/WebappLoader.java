@@ -1,4 +1,4 @@
-package com.polaris.framework.webapp;
+package com.polaris.framework.webapp.io;
 
 import java.io.InputStream;
 

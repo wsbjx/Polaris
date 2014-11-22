@@ -1,18 +1,34 @@
-Ext.require([ "Ext.grid.*" ]);
+Ext.require([ "Ext.grid.*", "Ext.data.*" ]);
+
+/**
+ * 定义用户模型
+ */
+Ext.define("User", {
+	extend : "Ext.data.Model",
+	idProperty : "id",
+	fields : [ "id", "username", "password", "name", "remark" ]
+});
 
 Ext.onReady(function() {
 
 	var userStore = Ext.create("Ext.data.Store", {
 		autoLoad : true,
-		autoSync : true,
 		model : "User",
 		proxy : {
 			type : "rest",
-			url : "../../platform/system/user"
+			url : "api/platform/system/user",
+			reader : {
+				type : "json",
+			},
+			writer : {
+				type : "json",
+				writeAllFields : true,
+				allowSingle : false
+			}
 		}
 	});
-	Ext.create('Ext.container.Viewport', {
-		layout : 'border',
+	Ext.create("Ext.container.Viewport", {
+		layout : "border",
 		items : [ Ext.create("Ext.grid.Panel", {
 			id : "userGrid",
 			region : "center",
@@ -20,11 +36,13 @@ Ext.onReady(function() {
 			title : "用户管理",
 			store : userStore,
 			preventHeader : true,
-			columns : [ {
-				text : "用户ID",
+			columns : [ Ext.create("Ext.grid.RowNumberer", {}), {
+				header : "ID",
 				width : 250,
-				sortable : true,
-				dataIndex : "id"
+				dataIndex : "id",
+				field : {
+					xtype : "textfield"
+				}
 			}, {
 				text : "用户名",
 				width : 250,
@@ -32,6 +50,13 @@ Ext.onReady(function() {
 				dataIndex : "username",
 				field : {
 					xtype : "textfield"
+				}
+			}, {
+				header : "密码",
+				width : 250,
+				dataIndex : "password",
+				field : {
+					xtype : "passwordfield"
 				}
 			}, {
 				header : "姓名",
@@ -50,16 +75,30 @@ Ext.onReady(function() {
 					xtype : "textfield"
 				}
 			} ],
+			plugins : [ Ext.create("Ext.grid.plugin.CellEditing", {
+				clicksToEdit : 1
+			}) ],
 			dockedItems : [ {
 				xtype : "toolbar",
 				items : [ {
+					text : "刷新",
+					handler : function() {
+						userStore.load();
+					}
+				}, {
 					text : "添加",
 					handler : function() {
-						store.insert(0, new User());
+						var user = new User();
+						user.set("id", "");
+						userStore.insert(0, user);
+					}
+				}, {
+					text : "保存",
+					handler : function() {
+						userStore.sync();
 					}
 				}, "-", {
 					text : "删除",
-					disabled : true,
 					handler : function() {
 						var grid = Ext.getCmp("userGrid");
 						var selection = grid.getView().getSelectionModel().getSelection()[0];

@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.validation.BindingResult;
@@ -102,7 +103,7 @@ public class UserController
 			response.setData(errorMap);
 			return response;
 		}
-		if (user.getId() == null || user.getId().length() < 1)
+		if (StringUtils.isEmpty(user.getId()))
 		{
 			log.info("add user:" + user.getUsername());
 			try
