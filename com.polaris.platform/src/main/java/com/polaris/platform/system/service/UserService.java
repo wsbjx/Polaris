@@ -57,7 +57,7 @@ public class UserService
 				{
 					superUser = new User();
 					superUser.setUsername(SUPER_USER);
-					superUser.setPassword(securityService.encrypt("system"));
+					superUser.setPassword(securityService.encrypt("admin"));
 					superUser.setRemark("超级用户");
 					superUser.setName("超级用户");
 					userDao.add(superUser);
