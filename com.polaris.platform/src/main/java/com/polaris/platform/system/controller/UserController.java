@@ -1,17 +1,12 @@
 package com.polaris.platform.system.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.polaris.framework.common.restful.SimpleResponse;
+import com.polaris.framework.common.utils.ValidatorUtils;
 import com.polaris.platform.authorized.service.AuthorizedService;
 import com.polaris.platform.system.service.UserService;
 import com.polaris.platform.system.vo.User;
@@ -81,50 +77,64 @@ public class UserController
 	}
 
 	/**
-	 * 添加/修改时候进行保存
+	 * 添加时候进行保存
 	 * 
 	 * @param user
 	 * @param bindingResult
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public SimpleResponse save(@Valid @RequestBody User user, BindingResult userBindingResult)
+	public SimpleResponse addUser(@Valid @RequestBody User user, BindingResult userBindingResult)
 	{
 		SimpleResponse response = new SimpleResponse();
-		if (userBindingResult.hasErrors())
+		Object errorMsg = ValidatorUtils.getErrorMsgMap(userBindingResult);
+		if (errorMsg != null)
 		{
+			// 有错误信息
 			response.setSuccess(false);
-			Map<String, String> errorMap = new HashMap<String, String>();
-			for (FieldError fieldError : userBindingResult.getFieldErrors())
-			{
-				errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
-			}
-			response.setMessage("用户信息保存失败!");
-			response.setData(errorMap);
+			response.setData(errorMsg);
 			return response;
 		}
-		if (StringUtils.isEmpty(user.getId()))
+		log.info("add user:" + user.getUsername());
+		try
 		{
-			log.info("add user:" + user.getUsername());
-			try
-			{
-				userService.addUser(user);
-			}
-			catch (Exception e)
-			{
-				log.warn("addUser failed!", e);
-				response.setSuccess(false);
-				response.setMessage(e.getMessage());
-				return response;
-			}
-			response.setMessage("用户添加成功!");
+			userService.addUser(user);
 		}
-		else
+		catch (Exception e)
 		{
-			log.info("update user:" + user.getUsername());
-			userService.updateUser(user);
-			response.setMessage("用户修改成功!");
+			log.warn("addUser failed!", e);
+			response.setSuccess(false);
+			response.setMessage(e.getMessage());
+			return response;
 		}
+		response.setMessage("用户添加成功!");
+		response.setSuccess(true);
+		response.setData(user);
+		return response;
+	}
+
+	/**
+	 * 修改用户信息
+	 * 
+	 * @param user
+	 * @param userBindingResult
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.PUT)
+	public SimpleResponse updateUser(@Valid @RequestBody User user, BindingResult userBindingResult)
+	{
+		SimpleResponse response = new SimpleResponse();
+		Object errorMsg = ValidatorUtils.getErrorMsgMap(userBindingResult);
+		if (errorMsg != null)
+		{
+			// 有错误信息
+			response.setSuccess(false);
+			response.setData(errorMsg);
+			return response;
+		}
+		log.info("update user:" + user.getUsername());
+		userService.updateUser(user);
+		response.setMessage("用户修改成功!");
 		response.setSuccess(true);
 		response.setData(user);
 		return response;

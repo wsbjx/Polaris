@@ -126,12 +126,12 @@ public class UserService
 		}
 	}
 
-	public void addUser(User user) throws Exception
+	public void addUser(User user)
 	{
 		User u = userDao.getUserByUsername(user.getUsername());
 		if (u != null)
 		{
-			throw new Exception("用户名已被占用:" + user.getUsername());
+			throw new RuntimeException("用户名已被占用:" + user.getUsername());
 		}
 		user.setPassword(securityService.encrypt(user.getPassword()));
 		userDao.add(user);
@@ -141,7 +141,7 @@ public class UserService
 		userRoleRelDao.add(rel);
 	}
 
-	public void modifyPassword(String userId, String oldPassword, String newPassword) throws Exception
+	public void modifyPassword(String userId, String oldPassword, String newPassword)
 	{
 		User u = userDao.getUser(userId);
 		if (u != null)
@@ -156,11 +156,11 @@ public class UserService
 		}
 		else
 		{
-			throw new Exception("用户不存在或者老密码验证失败!");
+			throw new RuntimeException("用户不存在或者老密码验证失败!");
 		}
 	}
 
-	public void updateUserRoles(String userId, String[] roleIds) throws Exception
+	public void updateUserRoles(String userId, String[] roleIds)
 	{
 		if (roleIds == null)
 		{
@@ -170,7 +170,7 @@ public class UserService
 		User u = userDao.getUser(userId);
 		if (u == null)
 		{
-			throw new Exception();
+			throw new RuntimeException("用户不存在!");
 		}
 		userRoleRelDao.deleteByUser(userId);
 		for (String roleId : roleIds)
