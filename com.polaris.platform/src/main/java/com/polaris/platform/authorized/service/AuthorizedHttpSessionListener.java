@@ -20,14 +20,14 @@ public class AuthorizedHttpSessionListener implements HttpSessionListener
 	@Override
 	public void sessionCreated(HttpSessionEvent event)
 	{
-		// TODO Auto-generated method stub
+		
 		authorizedService.sessionCreated(event.getSession());
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent event)
 	{
-		// TODO Auto-generated method stub
+		
 		authorizedService.sessionDestroyed(event.getSession());
 	}
 
