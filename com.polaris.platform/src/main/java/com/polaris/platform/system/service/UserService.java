@@ -133,6 +133,9 @@ public class UserService
 		{
 			throw new RuntimeException("用户名已被占用:" + user.getUsername());
 		}
+		// 首次添加用户,以用户名作为密码
+		user.setPassword(user.getUsername());
+		// 对密码进行AES加密
 		user.setPassword(securityService.encrypt(user.getPassword()));
 		userDao.add(user);
 		UserRoleRel rel = new UserRoleRel();

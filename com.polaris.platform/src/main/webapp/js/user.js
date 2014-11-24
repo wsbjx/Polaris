@@ -1,4 +1,4 @@
-Ext.require([ "Ext.grid.*", "Ext.data.*" ]);
+Ext.require([ '*' ]);
 
 /**
  * 定义用户模型
@@ -10,6 +10,8 @@ Ext.define("User", {
 });
 
 Ext.onReady(function() {
+
+	Ext.QuickTips.init();
 
 	var userStore = Ext.create("Ext.data.Store", {
 		autoLoad : true,
@@ -36,6 +38,7 @@ Ext.onReady(function() {
 			title : "用户管理",
 			store : userStore,
 			preventHeader : true,
+			selModel : Ext.create("Ext.selection.CheckboxModel", {}),
 			columns : [ Ext.create("Ext.grid.RowNumberer", {}), {
 				header : "ID",
 				width : 250,
@@ -107,6 +110,11 @@ Ext.onReady(function() {
 						}
 					}
 				} ]
+			}, {
+				xtype : "pagingtoolbar",
+				store : userStore,
+				displayInfo : true,
+				dock : "bottom"
 			} ]
 		}) ]
 	});

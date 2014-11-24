@@ -84,32 +84,26 @@ public class UserController
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public SimpleResponse addUser(@Valid @RequestBody User user, BindingResult userBindingResult)
+	public SimpleResponse addUser(@Valid @RequestBody User[] users)
 	{
 		SimpleResponse response = new SimpleResponse();
-		Object errorMsg = ValidatorUtils.getErrorMsgMap(userBindingResult);
-		if (errorMsg != null)
+		for (User user : users)
 		{
-			// 有错误信息
-			response.setSuccess(false);
-			response.setData(errorMsg);
-			return response;
-		}
-		log.info("add user:" + user.getUsername());
-		try
-		{
-			userService.addUser(user);
-		}
-		catch (Exception e)
-		{
-			log.warn("addUser failed!", e);
-			response.setSuccess(false);
-			response.setMessage(e.getMessage());
-			return response;
+			log.info("add user:" + user.getUsername());
+			try
+			{
+				userService.addUser(user);
+			}
+			catch (Exception e)
+			{
+				log.warn("addUser failed!", e);
+				response.setSuccess(false);
+				response.setMessage(e.getMessage());
+				return response;
+			}
 		}
 		response.setMessage("用户添加成功!");
 		response.setSuccess(true);
-		response.setData(user);
 		return response;
 	}
 

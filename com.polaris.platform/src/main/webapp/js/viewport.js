@@ -1,20 +1,39 @@
 Ext.require([ '*' ]);
 
+var moduleManager = new ModuleManager();// 定义模块管理器
+
+Ext.define("User", {
+	extend : "Ext.data.Model",
+	idProperty : "id",
+	fields : [ "id", "username", "password", "name", "remark" ]
+});
+
 Ext.onReady(function() {
+
+	var userStore = Ext.create("Ext.data.Store", {
+		autoLoad : true,
+		model : "User",
+		proxy : {
+			type : "rest",
+			url : "api/platform/system/user",
+			reader : {
+				type : "json",
+			},
+			writer : {
+				type : "json",
+				writeAllFields : true,
+				allowSingle : false
+			}
+		}
+	});
 
 	Ext.create('Ext.container.Viewport', {
 		layout : 'border',
 		items : [ {
-			region : 'north',
-			html : '<h1 class="x-panel-header">北极星智能平台联合实验室</h1>',
-			border : true,
-			margin : '0',
-			split : true
-		}, {
 			region : 'west',
 			collapsible : true,
 			title : '导航树',
-			width : 150,
+			width : 220,
 			split : true,
 			border : true,
 			xtype : "treepanel",
@@ -59,17 +78,97 @@ Ext.onReady(function() {
 			listeners : {
 				itemclick : function(view, record) {
 					var id = record.get("id");
-					var text = record.get("text");
 					var url = record.get("url");
+					var text = record.get("text");
 					if (url != null) {
 						var tabPanel = Ext.getCmp("tabpanel1");
 						var panel = tabPanel.getComponent(id);
 						if (panel == null) {
-							panel = Ext.create("Ext.panel.Panel", {
-								id : id,
-								title : text,
+							panel = Ext.create("Ext.grid.Panel", {
 								closable : true,
-								html : "<iframe src='" + url + "' width='100%' height='100%' frameborder='0' border='0' marginwidth='0' marginheight='0'></iframe>"
+								closeAction : "destroy",
+								frame : false,
+								title : text,
+								store : userStore,
+								preventHeader : true,
+								selModel : Ext.create("Ext.selection.CheckboxModel", {}),
+								columns : [ Ext.create("Ext.grid.RowNumberer", {}), {
+									header : "ID",
+									width : 250,
+									dataIndex : "id",
+									field : {
+										xtype : "textfield"
+									}
+								}, {
+									text : "用户名",
+									width : 250,
+									sortable : true,
+									dataIndex : "username",
+									field : {
+										xtype : "textfield"
+									}
+								}, {
+									header : "密码",
+									width : 250,
+									dataIndex : "password",
+									field : {
+										xtype : "passwordfield"
+									}
+								}, {
+									header : "姓名",
+									width : 200,
+									sortable : true,
+									dataIndex : "name",
+									field : {
+										xtype : "textfield"
+									}
+								}, {
+									text : "备注",
+									flex : 1,
+									sortable : true,
+									dataIndex : "remark",
+									field : {
+										xtype : "textfield"
+									}
+								} ],
+								plugins : [ Ext.create("Ext.grid.plugin.CellEditing", {
+									clicksToEdit : 1
+								}) ],
+								dockedItems : [ {
+									xtype : "toolbar",
+									items : [ {
+										text : "刷新",
+										handler : function() {
+											userStore.load();
+										}
+									}, {
+										text : "添加",
+										handler : function() {
+											var user = new User();
+											user.set("id", "");
+											userStore.insert(0, user);
+										}
+									}, {
+										text : "保存",
+										handler : function() {
+											userStore.sync();
+										}
+									}, "-", {
+										text : "删除",
+										handler : function() {
+											var grid = Ext.getCmp("userGrid");
+											var selection = grid.getView().getSelectionModel().getSelection()[0];
+											if (selection) {
+												store.remove(selection);
+											}
+										}
+									} ]
+								}, {
+									xtype : "pagingtoolbar",
+									store : userStore,
+									displayInfo : true,
+									dock : "bottom"
+								} ]
 							});
 							tabPanel.add(panel);
 						}
@@ -81,12 +180,7 @@ Ext.onReady(function() {
 			id : "tabpanel1",
 			region : 'center',
 			xtype : 'tabpanel',
-			autoScroll : true,
-			items : [ {
-				id : "root",
-				title : '首页',
-				html : '<p>wanglei is a dog! 1</p>'
-			} ]
+			items : []
 		} ]
 	});
 });

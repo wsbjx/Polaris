@@ -8,6 +8,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>com.polaris.framework.common</module>
+		<module>com.polaris.framework.view</module>
 		<module>com.polaris.framework.webapp</module>
 	</modules>
 	<dependencies>
