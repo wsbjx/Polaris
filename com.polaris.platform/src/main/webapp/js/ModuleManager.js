@@ -22,15 +22,17 @@ var ModuleManager = function() {
 	};
 
 	/**
-	 * 注册一个Module <br>
+	 * 注册一个Module. 在动态加载的JS中进行注册 <br>
 	 * {id:"moduleId",create:function,destroy:function}
 	 */
-	function registModule(module) {
+	this.registModule = function(module) {
 		var obj = moduleMap[module.id];
 		if (obj != null) {
 			console.log("Module is exists! id:" + module.id);
 			return;
 		}
 		moduleMap[module.id] = module;
-	}
+	};
 };
+
+var moduleManager = new ModuleManager();

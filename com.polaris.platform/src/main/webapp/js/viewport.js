@@ -1,7 +1,5 @@
 Ext.require([ '*' ]);
 
-var moduleManager = new ModuleManager();// 定义模块管理器
-
 Ext.define("User", {
 	extend : "Ext.data.Model",
 	idProperty : "id",
@@ -183,6 +181,6 @@ Ext.onReady(function() {
 			items : []
 		} ]
 	});
-	
+
 	moduleManager.loadModule("test");
 });
