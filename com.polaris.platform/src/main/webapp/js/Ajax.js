@@ -24,7 +24,7 @@ var Ajax = function() {
 		$.ajax({
 			type : method,
 			async : false,
-			url : "api/" + uri,
+			url : "api" + uri,
 			data : json,
 			contentType : "application/json; charset=UTF-8",
 			dataType : "json",

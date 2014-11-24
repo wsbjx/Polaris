@@ -183,4 +183,6 @@ Ext.onReady(function() {
 			items : []
 		} ]
 	});
+	
+	moduleManager.loadModule("test");
 });

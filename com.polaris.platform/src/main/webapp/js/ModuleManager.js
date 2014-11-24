@@ -15,8 +15,10 @@ var ModuleManager = function() {
 		var moduleInfo = ajax.GET("/view/module/" + moduleId);
 		var jsPath = moduleInfo.jsPath;
 		if (jsPath != null) {
+			// 动态加载JS文件
 			$(document.body).append("<script type='text/javascript' src='" + jsPath + "'></script>");
 		}
+		console.log("loadModule: " + moduleId);
 	};
 
 	/**
