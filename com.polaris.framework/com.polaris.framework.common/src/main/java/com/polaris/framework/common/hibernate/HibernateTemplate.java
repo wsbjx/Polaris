@@ -1,4 +1,4 @@
-package com.polaris.framework.common.dao;
+package com.polaris.framework.common.hibernate;
 
 import java.util.List;
 import org.hibernate.Query;

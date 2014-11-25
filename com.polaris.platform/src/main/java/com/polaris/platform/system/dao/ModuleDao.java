@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import com.polaris.framework.common.dao.HibernateTemplate;
+import com.polaris.framework.common.hibernate.HibernateTemplate;
 import com.polaris.platform.system.vo.Module;
 
 /**

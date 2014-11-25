@@ -32,7 +32,7 @@
 		<property name="packagesToScan" value="com.polaris.platform" />
 	</bean>
 
-	<bean id="hibernateTemplate" class="com.polaris.framework.common.dao.HibernateTemplate">
+	<bean id="hibernateTemplate" class="com.polaris.framework.common.hibernate.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
