@@ -75,13 +75,65 @@ var ModuleManager = function() {
 	};
 };
 
-var moduleManager = new ModuleManager();
+/**
+ * 表格属性管理器
+ */
+var GridManager = function() {
+	var gridMap = {};
+
+	/**
+	 * 获得表格的属性集合
+	 */
+	this.getFields = function(className) {
+		if (gridMap[className] != null) {
+			return gridMap[className];
+		}
+		var response = ajax.GET("/view/support/extjs/grid/" + className);
+		if (response.success) {
+			var grid = response.data;
+			gridMap[className] = grid;
+			return grid;
+		} else {
+			Ext.Msg.show({
+				title : "错误",
+				message : "数据模型加载失败!",
+				buttons : Ext.Msg.OK,
+				icon : Ext.Msg.ERROR
+			});
+		}
+	};
+};
 
 /**
  * Model数据类型管理器
  */
 var ModelManager = function() {
 	var modelMap = {};
-	
+
+	/**
+	 * 加载一个模型
+	 */
+	this.require = function(className) {
+		if (modelMap[className] != null) {
+			return;// 已经完成加载
+		}
+		var response = ajax.GET("/view/support/extjs/model/" + className);
+		if (response.success) {
+			var model = response.data;
+			Ext.define(model.name, {
+				extend : "Ext.data.Model",
+				idProperty : model.idProperty,
+				fields : model.modelFields
+			});
+			modelMap[className] = model;
+		} else {
+			Ext.Msg.show({
+				title : "错误",
+				message : "数据模型加载失败!",
+				buttons : Ext.Msg.OK,
+				icon : Ext.Msg.ERROR
+			});
+		}
+	};
 
 };

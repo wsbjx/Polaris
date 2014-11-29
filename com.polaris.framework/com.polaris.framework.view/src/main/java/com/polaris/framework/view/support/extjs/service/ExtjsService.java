@@ -146,12 +146,6 @@ public class ExtjsService
 				type = getShortType(field.getType());
 			}
 			modelFieldProperty.setType(type);
-			// 设置转换器
-			String convert = modelField.convert();
-			if (!StringUtils.isEmpty(convert))
-			{
-				modelFieldProperty.setConvert(convert);
-			}
 			list.add(modelFieldProperty);
 		}
 		modelProperty.setModelFields(list.toArray(new ModelFieldProperty[0]));

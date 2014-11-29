@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.polaris.framework.common.security.SecurityService;
 import com.polaris.platform.system.dao.UserDao;
 import com.polaris.platform.system.dao.UserRoleRelDao;
-import com.polaris.platform.system.vo.Role;
 import com.polaris.platform.system.vo.User;
 import com.polaris.platform.system.vo.UserRoleRel;
 
@@ -33,8 +32,6 @@ public class UserService
 	public static final String SUPER_USER = "admin";
 	@Resource
 	private UserDao userDao;
-	@Resource
-	private RoleService roleService;
 	@Resource
 	private UserRoleRelDao userRoleRelDao;
 	@Resource
@@ -76,20 +73,12 @@ public class UserService
 	public Set<String> getRoleSetByUser(String userId)
 	{
 		Set<String> set = new HashSet<String>();
-		if (userId == null || userId.length() < 1)
+		UserRoleRel[] rels = userRoleRelDao.getUserRoleRelsByUser(userId);
+		for (UserRoleRel rel : rels)
 		{
-			Role role = roleService.getVisitorRole();
-			set.add(role.getId());
-		}
-		else
-		{
-			UserRoleRel[] rels = userRoleRelDao.getUserRoleRelsByUser(userId);
-			for (UserRoleRel rel : rels)
+			if (!set.contains(rel.getRoleId()))
 			{
-				if (!set.contains(rel.getRoleId()))
-				{
-					set.add(rel.getRoleId());
-				}
+				set.add(rel.getRoleId());
 			}
 		}
 		return set;
@@ -138,10 +127,6 @@ public class UserService
 		// 对密码进行AES加密
 		user.setPassword(securityService.encrypt(user.getPassword()));
 		userDao.add(user);
-		UserRoleRel rel = new UserRoleRel();
-		rel.setRoleId(roleService.getVisitorRole().getId());
-		rel.setUserId(user.getId());
-		userRoleRelDao.add(rel);
 	}
 
 	public void modifyPassword(String userId, String oldPassword, String newPassword)

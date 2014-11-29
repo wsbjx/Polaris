@@ -1,4 +1,4 @@
-package com.polaris.framework.view.support.extjs.annotation;
+package com.polaris.platform.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,40 +6,40 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 属性模型
+ * 模块定义
  * 
  * @author wang.sheng
  * 
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface ModelField
+@Target(ElementType.TYPE)
+public @interface Module
 {
 	/**
-	 * 名称.默认属性名
+	 * javascript文件的路径
 	 * 
 	 * @return
 	 */
-	String value() default "";
+	String jsFile() default "";
 
 	/**
-	 * 默认取值
+	 * 模块名称
 	 * 
 	 * @return
 	 */
-	String defaultValue() default "";
+	String name() default "";
 
 	/**
-	 * 类型
+	 * 模块ID.应该全局唯一
 	 * 
 	 * @return
 	 */
-	String type() default "";
+	String id() default "";
 
 	/**
-	 * 关键字
+	 * 角色集合
 	 * 
 	 * @return
 	 */
-	boolean key() default false;
+	String[] roles() default {};
 }

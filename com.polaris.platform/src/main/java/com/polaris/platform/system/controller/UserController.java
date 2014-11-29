@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.polaris.framework.common.restful.SimpleResponse;
 import com.polaris.framework.common.utils.ValidatorUtils;
-import com.polaris.platform.authorized.service.AuthorizedService;
 import com.polaris.platform.system.service.UserService;
 import com.polaris.platform.system.vo.User;
 
@@ -31,8 +30,6 @@ public class UserController
 	Log log = LogFactory.getLog(getClass());
 	@Resource
 	private UserService userService;
-	@Resource
-	private AuthorizedService authorizedService;
 
 	@PostConstruct
 	protected void initUserService()

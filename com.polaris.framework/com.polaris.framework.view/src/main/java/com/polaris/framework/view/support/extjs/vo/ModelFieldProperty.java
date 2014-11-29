@@ -11,7 +11,6 @@ public class ModelFieldProperty
 	private String name;
 	private Object defaultValue;
 	private String type;
-	private String convert;
 
 	public String getName()
 	{
@@ -41,16 +40,6 @@ public class ModelFieldProperty
 	public void setType(String type)
 	{
 		this.type = type;
-	}
-
-	public String getConvert()
-	{
-		return convert;
-	}
-
-	public void setConvert(String convert)
-	{
-		this.convert = convert;
 	}
 
 }
