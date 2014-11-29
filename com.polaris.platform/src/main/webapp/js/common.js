@@ -3,20 +3,20 @@
  */
 var Ajax = function() {
 
-	this.GET = function(uri) {
-		return sendRequest(uri, {}, "GET");
+	this.GET = function(uri, data) {
+		return sendRequest(uri, data, "GET");
 	};
 
 	this.POST = function(uri, data) {
 		return sendRequest(uri, data, "POST");
 	};
 
-	this.DELETE = function(uri) {
-		return sendRequest(uri, {}, "DELETE");
+	this.DELETE = function(uri, data) {
+		return sendRequest(uri, data, "DELETE");
 	};
 
-	this.PUT = function(uri) {
-		return sendRequest(uri, {}, "PUT");
+	this.PUT = function(uri, data) {
+		return sendRequest(uri, data, "PUT");
 	};
 
 	function sendRequest(uri, data, method) {
@@ -43,35 +43,32 @@ var ajax = new Ajax();
  */
 var ModuleManager = function() {
 	var moduleMap = {};
+	var modules = ajax.GET("/platform/system/module");
+	for ( var i = 0; i < modules.length; i++) {
+		var module = modules[i];
+		moduleMap[module.id] = module;
+	}
 
 	/**
 	 * 根据moduleId加载指定模块
 	 */
 	this.loadModule = function(moduleId) {
 		var module = moduleMap[moduleId];
-		if (module != null) {
-			return module;
+		if (module == null) {
+			Ext.Msg.show({
+				title : "错误",
+				message : "模块:" + moduleId + " 加载失败!",
+				buttons : Ext.Msg.OK,
+				icon : Ext.Msg.ERROR
+			});
+			return false;
 		}
-		var moduleInfo = ajax.GET("/view/module/" + moduleId);
-		var jsPath = moduleInfo.jsPath;
-		if (jsPath != null) {
+		var jsPath = module.jsPath;
+		if (jsPath != null && jsPath != "") {
 			// 动态加载JS文件
 			$(document.body).append("<script type='text/javascript' src='" + jsPath + "'></script>");
 		}
-		console.log("loadModule: " + moduleId);
-	};
-
-	/**
-	 * 注册一个Module. 在动态加载的JS中进行注册 <br>
-	 * {id:"moduleId",create:function,destroy:function}
-	 */
-	this.registModule = function(module) {
-		var obj = moduleMap[module.id];
-		if (obj != null) {
-			console.log("Module is exists! id:" + module.id);
-			return;
-		}
-		moduleMap[module.id] = module;
+		console.log("loadModule, id=" + moduleId + ", name=" + module.name);
 	};
 };
 
@@ -107,7 +104,7 @@ var GridManager = function() {
 /**
  * Model数据类型管理器
  */
-var ModelManager = function() {
+var DataModelManager = function() {
 	var modelMap = {};
 
 	/**

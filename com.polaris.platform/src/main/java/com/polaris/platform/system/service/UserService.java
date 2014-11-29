@@ -24,7 +24,7 @@ import com.polaris.platform.system.vo.UserRoleRel;
  * @author wang.sheng
  */
 @Service
-@Transactional(value = "hibernateTransactionManager", propagation = Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public class UserService
 {
 	Log log = LogFactory.getLog(getClass());
@@ -67,7 +67,7 @@ public class UserService
 	public boolean isSuperUser(String userId)
 	{
 		User user = getSuperUser();
-		return user.getId().equals(userId);
+		return StringUtils.equals(userId, user.getId());
 	}
 
 	public Set<String> getRoleSetByUser(String userId)
@@ -181,12 +181,20 @@ public class UserService
 		return userDao.getUsers();
 	}
 
-	public void updateUser(User user)
+	public void update(User[] users)
+	{
+		for (User user : users)
+		{
+			userDao.update(user);
+		}
+	}
+
+	public void update(User user)
 	{
 		userDao.update(user);
 	}
 
-	public void deleteUser(String id)
+	public void delete(String id)
 	{
 		User u = userDao.getUser(id);
 		if (u == null)
