@@ -32,11 +32,22 @@ public class ModuleService
 	private ApplicationContext applicationContext;
 	private static final Map<String, ModuleProperty> moduleMap = new HashMap<String, ModuleProperty>();
 
+	/**
+	 * 获取所有的模块属性
+	 * 
+	 * @return
+	 */
 	public ModuleProperty[] getModuleProperties()
 	{
 		return moduleMap.values().toArray(new ModuleProperty[0]);
 	}
 
+	/**
+	 * 获取指定的模块属性
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public ModuleProperty getModuleProperty(String id)
 	{
 		return moduleMap.get(id);
