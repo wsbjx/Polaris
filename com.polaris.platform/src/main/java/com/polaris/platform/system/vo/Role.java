@@ -9,24 +9,21 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 用户定义
+ * 角色定义
  * 
  * @author wang.sheng
+ * 
  */
 @Entity
 @Table
-public class User
+public class Role
 {
 	@Id
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	@GeneratedValue(generator = "system-uuid")
 	@Column(length = 32)
 	private String id;
-	@Column(nullable = false, length = 50)
-	private String username;
-	@Column(nullable = false, length = 100)
-	private String password;
-	@Column(nullable = false, length = 50)
+	@Column(length = 50, nullable = false)
 	private String name;
 	@Column(length = 200)
 	private String remark;
@@ -39,26 +36,6 @@ public class User
 	public void setId(String id)
 	{
 		this.id = id;
-	}
-
-	public String getUsername()
-	{
-		return username;
-	}
-
-	public void setUsername(String username)
-	{
-		this.username = username;
-	}
-
-	public String getPassword()
-	{
-		return password;
-	}
-
-	public void setPassword(String password)
-	{
-		this.password = password;
 	}
 
 	public String getName()

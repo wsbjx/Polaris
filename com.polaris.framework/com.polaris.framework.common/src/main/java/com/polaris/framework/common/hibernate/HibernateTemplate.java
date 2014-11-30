@@ -1,9 +1,13 @@
 package com.polaris.framework.common.hibernate;
 
 import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import com.polaris.framework.common.utils.ArrayUtils;
 
@@ -12,24 +16,11 @@ import com.polaris.framework.common.utils.ArrayUtils;
  * 
  * @author wang.sheng
  */
+@Repository
 public class HibernateTemplate
 {
+	@Resource
 	private SessionFactory sessionFactory;
-
-	/**
-	 * 使用Spring的依赖注入
-	 * 
-	 * @param sessionFactory
-	 */
-	public void setSessionFactory(SessionFactory sessionFactory)
-	{
-		this.sessionFactory = sessionFactory;
-	}
-
-	public SessionFactory getSessionFactory()
-	{
-		return this.sessionFactory;
-	}
 
 	/**
 	 * 查询得到一个列表

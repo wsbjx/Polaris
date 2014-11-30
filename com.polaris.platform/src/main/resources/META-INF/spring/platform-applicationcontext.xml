@@ -32,10 +32,6 @@
 		<property name="packagesToScan" value="com.polaris.platform" />
 	</bean>
 
-	<bean id="hibernateTemplate" class="com.polaris.framework.common.hibernate.HibernateTemplate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
 	<bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
