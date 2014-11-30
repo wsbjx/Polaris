@@ -35,11 +35,4 @@ public @interface Module
 	 * @return
 	 */
 	String id() default "";
-
-	/**
-	 * 角色集合
-	 * 
-	 * @return
-	 */
-	String[] roles() default {};
 }

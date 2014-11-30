@@ -5,7 +5,6 @@ public class ModuleProperty
 	private String id;
 	private String name;
 	private String jsFile;
-	private String[] roles;
 
 	public String getId()
 	{
@@ -35,16 +34,6 @@ public class ModuleProperty
 	public void setJsFile(String jsFile)
 	{
 		this.jsFile = jsFile;
-	}
-
-	public String[] getRoles()
-	{
-		return roles;
-	}
-
-	public void setRoles(String[] roles)
-	{
-		this.roles = roles;
 	}
 
 }

@@ -69,11 +69,18 @@ public class ModuleService
 			{
 				Module module = beanClass.getAnnotation(Module.class);
 				ModuleProperty mp = this.toModuleProperty(module, beanClass);
-				log.info("load Module, id:" + mp.getId() + ", name:" + mp.getName() + ", jsFile:" + mp.getJsFile());
-				moduleMap.put(mp.getId(), mp);
+				if (moduleMap.containsKey(mp.getId()))
+				{
+					log.error("Module loaded failed! Duplicate Module id:" + mp.getId() + ", name:" + mp.getName());
+				}
+				else
+				{
+					log.info("Module loaded successful!, id:" + mp.getId() + ", name:" + mp.getName() + ", jsFile:" + mp.getJsFile());
+					moduleMap.put(mp.getId(), mp);
+				}
 			}
 		}
-		log.info("Module Properties loaded successful!");
+		log.info("All Module loaded successful!");
 	}
 
 	/**
@@ -99,7 +106,6 @@ public class ModuleService
 		}
 		mp.setName(name);
 		mp.setJsFile(module.jsFile());
-		mp.setRoles(module.roles());
 		return mp;
 	}
 
