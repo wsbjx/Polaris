@@ -26,6 +26,11 @@ public class Picture
 	@Column(length = 32)
 	private String id;
 	/**
+	 * 所在的目录ID
+	 */
+	@Column(length = 50)
+	private String folderId;
+	/**
 	 * 图片标题
 	 */
 	@Column(length = 50)
@@ -41,10 +46,25 @@ public class Picture
 	@Column(length = 8)
 	private Date modifyDate;
 	/**
+	 * 图片宽度
+	 */
+	@Column(length = 4)
+	private Integer width;
+	/**
+	 * 图片高度
+	 */
+	@Column(length = 4)
+	private Integer height;
+	/**
 	 * 备注信息
 	 */
 	@Column(length = 200)
 	private String remark;
+	/**
+	 * 二进制内容的ID
+	 */
+	@Column(length = 32, nullable = false)
+	private String blobId;
 
 	public String getId()
 	{
@@ -94,6 +114,46 @@ public class Picture
 	public void setModifyDate(Date modifyDate)
 	{
 		this.modifyDate = modifyDate;
+	}
+
+	public String getBlobId()
+	{
+		return blobId;
+	}
+
+	public void setBlobId(String blobId)
+	{
+		this.blobId = blobId;
+	}
+
+	public String getFolderId()
+	{
+		return folderId;
+	}
+
+	public void setFolderId(String folderId)
+	{
+		this.folderId = folderId;
+	}
+
+	public Integer getWidth()
+	{
+		return width;
+	}
+
+	public void setWidth(Integer width)
+	{
+		this.width = width;
+	}
+
+	public Integer getHeight()
+	{
+		return height;
+	}
+
+	public void setHeight(Integer height)
+	{
+		this.height = height;
 	}
 
 }
