@@ -28,8 +28,13 @@ public class Picture
 	/**
 	 * 所在的目录ID
 	 */
-	@Column(length = 50)
+	@Column(length = 32)
 	private String folderId;
+	/**
+	 * 上传的用户ID
+	 */
+	@Column(length = 32)
+	private String userId;
 	/**
 	 * 图片标题
 	 */
@@ -40,11 +45,6 @@ public class Picture
 	 */
 	@Column(length = 8)
 	private Date createDate;
-	/**
-	 * 修改日期
-	 */
-	@Column(length = 8)
-	private Date modifyDate;
 	/**
 	 * 图片宽度
 	 */
@@ -106,16 +106,6 @@ public class Picture
 		this.title = title;
 	}
 
-	public Date getModifyDate()
-	{
-		return modifyDate;
-	}
-
-	public void setModifyDate(Date modifyDate)
-	{
-		this.modifyDate = modifyDate;
-	}
-
 	public String getBlobId()
 	{
 		return blobId;
@@ -154,6 +144,16 @@ public class Picture
 	public void setHeight(Integer height)
 	{
 		this.height = height;
+	}
+
+	public String getUserId()
+	{
+		return userId;
+	}
+
+	public void setUserId(String userId)
+	{
+		this.userId = userId;
 	}
 
 }

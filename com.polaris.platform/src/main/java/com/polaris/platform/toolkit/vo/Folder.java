@@ -18,11 +18,22 @@ import org.hibernate.annotations.GenericGenerator;
 @Table
 public class Folder
 {
+	/**
+	 * 表示图片目录
+	 */
+	public static final Integer PICTURE_FOLDER = 1;
+	/**
+	 * 表示文章目录
+	 */
+	public static final Integer ARTICLE_FOLDER = 2;
+
 	@Id
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	@GeneratedValue(generator = "system-uuid")
 	@Column(length = 32)
 	private String id;
+	@Column(length = 4)
+	private Integer type;
 	@Column(length = 32)
 	private String parentId;
 	@Column(length = 50)
@@ -51,6 +62,16 @@ public class Folder
 	public String getName()
 	{
 		return name;
+	}
+
+	public Integer getType()
+	{
+		return type;
+	}
+
+	public void setType(Integer type)
+	{
+		this.type = type;
 	}
 
 	public void setName(String name)
