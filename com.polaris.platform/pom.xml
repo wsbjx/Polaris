@@ -22,5 +22,10 @@
 			<artifactId>com.polaris.framework.webapp</artifactId>
 			<version>1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.0.25.Final</version>
+		</dependency>
 	</dependencies>
 </project>
